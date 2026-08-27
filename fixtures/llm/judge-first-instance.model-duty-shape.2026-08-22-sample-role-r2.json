@@ -1,0 +1,3 @@
+{
+  "text": "{\n  \"ruling\": \"The draft's recorded facts for model:duty:shape are adopted as the governing model.\",\n  \"reasoning\": \"First impression; the facts are internally consistent and traceable to the prose. Under SPEC-LAW, spec is law once signed off; this ruling fixes the modelling choice for future drafts.\",\n  \"lawApplied\": [\n    \"SPEC-LAW: spec is law\",\n    \"SPEC-LAW: rulings are precedent\"\n  ]\n}"
+}

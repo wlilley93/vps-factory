@@ -1,0 +1,9 @@
+{
+  "name": "roundtrip",
+  "passed": true,
+  "details": {
+    "backtranslation": "The role requires a candidate satisfying every one of these requirements: at least seven years of experience (yearsExp); TypeScript among their skills; at least two production launches led; an AWS certification among their certifications; Kubernetes among their skills. Nothing else is required; the ability to communicate clearly with stakeholders is deliberately not modelled.",
+    "verdict": "faithful",
+    "divergences": []
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "roundtrip",
+  "passed": true,
+  "details": {
+    "backtranslation": "The role admits a candidate who satisfies ALL of the following, jointly:\nhas shipped at least one product; has written at least one specification precise enough for a machine (or an agent-assisted engineer) to build from, and iterated it; has held their own in senior stakeholder rooms; has used Claude Code and holds opinions on writing specs for it; has run customer discovery conversations; has synthesised requirements across multiple customers into common products; has built at least one business case reasoning about NPV and second-order effects; has produced at least one DPIA and at least one RFP response; has produced client-facing build materials (training/onboarding/first-90-days); and declares themselves keen on early-stage AI company life.\nNothing else is required. Deliberately not required: any upper bound on technicality; caring about clarity to a tiresome degree; preferring five parallel workstreams; and every six-month outcome (standardised specs across the offering, halving Edu's meetings, owning compliance, leading prioritisation, earning client trust) — those describe a future employment, not an applicant.",
+    "verdict": "faithful",
+    "divergences": []
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "traceability",
+  "passed": true,
+  "details": {
+    "hardFailures": [],
+    "uncoveredSentences": [
+      "The role owns delivery of customer-facing services end to end."
+    ]
+  }
+}

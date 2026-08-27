@@ -1,0 +1,9 @@
+name = "vps"
+version = "0.3.0"
+defaultTargets = ["Spec"]
+
+# No kernel dependency. This factory holds no statute book, so it needs no engine: its Lean
+# is specifications and one hand-proved lemma. Governance questions go to the court, which
+# owns the kernel relationship. See record/0037.
+[[lean_lib]]
+name = "Spec"

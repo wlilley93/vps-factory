@@ -1,0 +1,7 @@
+node_modules/
+dist/
+cases/*/.llmcache/
+lean/.lake/
+lean/GateEval*.lean
+lean/*/GateEval*.lean
+.vps-lock/

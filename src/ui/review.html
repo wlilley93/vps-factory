@@ -1,0 +1,177 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VPS — sign-off</title>
+<style>
+  :root { --ink:#1a1a1a; --mut:#666; --line:#ddd; --warn-bg:#fff3cd; --warn-bd:#a07800;
+          --excl-bg:#3b0d0d; --excl-ink:#fff; --hl:#fde68a; --div:#fecaca; --ok:#166534; --bad:#991b1b; }
+  * { box-sizing:border-box }
+  body { font:16px/1.55 Georgia,'Times New Roman',serif; color:var(--ink); margin:0; background:#faf9f7; }
+  main { max-width:64rem; margin:0 auto; padding:1.5rem 1.25rem 8rem; }
+  h1 { font-size:1.3rem } h2 { font-size:1.05rem; margin-top:2.2rem; border-bottom:1px solid var(--line); padding-bottom:.3rem }
+  .meta { color:var(--mut); font-family:ui-monospace,monospace; font-size:.8rem }
+  .banner { background:var(--excl-bg); color:var(--excl-ink); padding:1rem 1.2rem; margin:1.2rem 0; border-radius:4px }
+  .banner label { display:block; margin:.6rem 0; cursor:pointer }
+  .banner input { margin-right:.5rem }
+  .cols { display:grid; grid-template-columns:1fr 1fr; gap:1rem } @media (max-width:50rem){ .cols{grid-template-columns:1fr} }
+  .pane { background:#fff; border:1px solid var(--line); border-radius:4px; padding:1rem; white-space:pre-wrap; font-size:.92rem; overflow-x:auto }
+  .uncov { color:var(--mut); background:#f1f1f1 } .uncov::after{ content:" [not modelled]"; font-size:.7em; color:var(--warn-bd) }
+  .span-hl { background:var(--hl) } .div-hl { background:var(--div) }
+  .card { background:#fff; border:1px solid var(--line); border-left:4px solid var(--warn-bd); border-radius:4px; padding:.9rem 1rem; margin:.8rem 0 }
+  .card .opts label { display:block } .drift { border-left-color:var(--bad); background:#fff5f5 }
+  table { border-collapse:collapse; width:100% } td,th { border:1px solid var(--line); padding:.35rem .5rem; text-align:left; font-size:.9rem }
+  .pass { color:var(--ok) } .fail { color:var(--bad); font-weight:bold }
+  details pre { max-height:20rem; overflow:auto; background:#f6f6f6; padding:.6rem; font-size:.78rem }
+  .tree li { margin:.15rem 0; cursor:pointer } .tree li:hover,.tree li:focus { outline:2px solid var(--hl) }
+  .actionbar { position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:2px solid var(--ink); padding:.8rem 1.2rem; }
+  .actionbar .inner { max-width:64rem; margin:0 auto; display:flex; gap:1rem; align-items:center; flex-wrap:wrap }
+  button { font:inherit; padding:.5rem 1.1rem; border:1.5px solid var(--ink); background:#fff; cursor:pointer; border-radius:4px }
+  button:disabled { opacity:.4; cursor:not-allowed }
+  .standing { font-size:.85rem; max-width:34rem }
+  input[type=text] { font:inherit; padding:.35rem .5rem; border:1px solid var(--line); border-radius:4px }
+  ins { background:#dcfce7; text-decoration:none } del { background:#fee2e2 }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important } }
+</style>
+<main id="app">Loading case bundle…</main>
+<div class="actionbar"><div class="inner" id="bar"></div></div>
+<script>
+const $ = (s, el=document) => el.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let B = null;
+const acks = { excl:new Set(), amb:new Map() };
+
+async function load(){
+  B = await (await fetch("/api/case")).json();
+  render();
+}
+function spansOf(ir){
+  const out = [];
+  for (const n of ir.nouns){ out.push({...n.source, id:"noun:"+n.name});
+    for (const f of n.fields) out.push({...f.source, id:"field:"+n.name+"."+f.name}); }
+  for (const p of ir.predicates) out.push({...p.source, id:"pred:"+p.name});
+  return out.sort((a,b)=>a.start-b.start);
+}
+function intakeHtml(){
+  const text = B.intake, spans = spansOf(B.ir);
+  let html = "", pos = 0;
+  for (const s of spans){
+    if (s.start < pos) continue;
+    html += esc(text.slice(pos, s.start));
+    html += `<mark class="span-mark" data-id="${esc(s.id)}">${esc(text.slice(s.start, s.end))}</mark>`;
+    pos = s.end;
+  }
+  html += esc(text.slice(pos));
+  return html;
+}
+function sentenceCoverage(){
+  const un = B.checks.traceability?.details?.uncoveredSentences ?? [];
+  return un.length ? `<p class="meta">${un.length} sentence(s) not modelled (dimmed in the brief’s terminal report): ${un.map(esc).map(s=>`<span class="uncov">${s}</span>`).join(" · ")}</p>` : "";
+}
+function render(){
+  const ir = B.ir, ro = B.readOnly;
+  const rev = B.revision, amend = B.amendContext;
+  const checksRows = ["traceability","ensemble","roundtrip","knownAnswer","adversarial"].map(k=>{
+    const r = B.checks[k]; if (!r) return "";
+    return `<tr><td>${k}</td><td class="${r.passed?'pass':'fail'}">${r.passed?"PASS":"FAIL"}</td>
+      <td><details><summary>report</summary><pre>${esc(JSON.stringify(r.details,null,2))}</pre></details></td></tr>`;
+  }).join("");
+  const divs = (B.checks.roundtrip?.details?.divergences ?? []);
+  $("#app").innerHTML = `
+  <h1>VPS — sign-off: ${esc(B.caseId)}</h1>
+  <p class="meta">status ${esc(B.state.status)} · revision ${B.state.revision} · IR ${B.irSha.slice(0,12)}…</p>
+  ${ro ? `<p class="banner">Read-only: this case is not awaiting sign-off.${B.signoff ? " Recorded: approved by "+esc(B.signoff.by)+" at "+esc(B.signoff.at)+" ("+esc(B.signoff.rulingCitation)+")":""}</p>` : ""}
+  ${ir.exclusions.length ? `<section class="banner" aria-label="exclusions">
+    <strong>EXCLUSIONS — nothing below is covered by any verdict.</strong>
+    ${ir.exclusions.map(x=>`<label><input type="checkbox" data-excl="${esc(x.sourceText)}" ${ro?"disabled":""}>
+      “${esc(x.sourceText)}” — <em>${esc(x.reason)}</em><br><small>I understand this is NOT covered by any verdict.</small></label>`).join("")}
+  </section>` : ""}
+  ${rev ? `<h2>Revision delta (read this first)</h2>
+    ${amend ? `<div class="pane">${(amend.proseDiff.removed??[]).map(r=>`<del>${esc(r)}</del>`).join(" ")} ${(amend.proseDiff.added??[]).map(a=>`<ins>${esc(a)}</ins>`).join(" ")}</div>`:""}
+    <table><tr><th>kind</th><th>path</th><th>detail</th></tr>
+    ${rev.deltas.map(d=>`<tr><td>${esc(d.kind)}</td><td>${esc(d.path)}</td><td>${esc(d.detail)}</td></tr>`).join("")}</table>
+    ${rev.drift.length ? `<div class="card drift"><strong>⚠ DRIFT — IR changes outside the prose diff:</strong>
+      ${rev.drift.map(d=>`<div>! ${esc(d.path)} — ${esc(d.detail)}</div>`).join("")}</div>` : ""}` : ""}
+  <h2>Faithfulness — prose vs. back-translation</h2>
+  <div class="cols">
+    <div class="pane" id="intakePane">${intakeHtml()}</div>
+    <div class="pane">${esc(B.checks.roundtrip?.details?.backtranslation ?? "(no roundtrip report)")}</div>
+  </div>
+  ${divs.length ? `<div class="card"><strong>Judge divergences:</strong> ${divs.map(d=>`<div class="div-hl">[${esc(d.kind)}] ${esc(d.detail)}</div>`).join("")}</div>` : `<p class="meta">Faithfulness judge: ${esc(B.checks.roundtrip?.details?.verdict ?? "?")}</p>`}
+  ${sentenceCoverage()}
+  <h2>Traceability — the model, wired to its sources</h2>
+  <ul class="tree" id="tree">
+    ${ir.nouns.map(n=>`<li tabindex="0" data-id="noun:${esc(n.name)}">structure <b>${esc(n.name)}</b> (${esc(n.role)})</li>
+      ${n.fields.map(f=>`<li tabindex="0" style="margin-left:1.4rem" data-id="field:${esc(n.name)}.${esc(f.name)}">${esc(f.name)} : ${esc(f.type)}</li>`).join("")}`).join("")}
+    ${ir.predicates.map(p=>`<li tabindex="0" data-id="pred:${esc(p.name)}">predicate <b>${esc(p.name)}</b> — <em>${esc(p.interpretationNotes)}</em></li>`).join("")}
+  </ul>
+  <details><summary>requirement itemsData (${ir.requirement.itemsData.values.length} items)</summary>
+    <pre>${esc(JSON.stringify(ir.requirement.itemsData.values,null,2))}</pre></details>
+  <h2>Ambiguities — the drafter’s judgment calls</h2>
+  ${ir.ambiguities.length ? ir.ambiguities.map((a,i)=>`<div class="card">
+    <div>“${esc(a.sourceText)}”</div>
+    <div class="opts">${a.options.map(o=>`<label>${o===a.chosen?"▶":"&nbsp;&nbsp;"} ${esc(o)}${o===a.chosen?" <em>(chosen)</em>":""}</label>`).join("")}</div>
+    <div class="meta">rationale: ${esc(a.rationale)}</div>
+    ${ro?"":`<div>
+      <label><input type="radio" name="amb${i}" data-amb="${esc(a.sourceText)}" value="accept"> Accept this interpretation</label>
+      <label><input type="radio" name="amb${i}" data-amb="${esc(a.sourceText)}" value="reject"> Reject draft (send back with note)</label>
+    </div>`}
+  </div>`).join("") : "<p class='meta'>None recorded.</p>"}
+  <h2>Checks</h2><table><tr><th>check</th><th>result</th><th></th></tr>${checksRows}</table>
+  <h2>Precedent</h2>
+  <p class="meta">applied: ${esc((B.precedent?.applied??[]).join(", ")||"none")}<br>
+     filed: ${(B.precedent?.filed??[]).map(c=>`<a href="#" data-ruling="${esc(c)}">${esc(c)}</a>`).join(", ")||"none"}</p>
+  <div id="rulingView"></div>`;
+  $("#bar").innerHTML = ro ? `<span class="standing">This case is not awaiting sign-off; the record above is read-only.</span>` : `
+    <label>Signer <input type="text" id="by" required placeholder="name" value="${esc((new URLSearchParams(location.search)).get("by") ?? "")}"></label>
+    <button id="approve" disabled>Approve and file ruling</button>
+    <button id="reject" disabled>Reject with notes</button>
+    <input type="text" id="notes" placeholder="notes (required to reject)" style="flex:1;min-width:14rem">
+    <span class="standing">Approval records a human judgment that this formalization faithfully represents the prose. It is the load-bearing condition of every future GREEN verdict for this case. Nothing on this page is proved.</span>`;
+  wire();
+}
+function wire(){
+  const ro = B.readOnly;
+  document.querySelectorAll(".span-mark").forEach(m=>{
+    m.addEventListener("mouseenter",()=>hl(m.dataset.id)); m.addEventListener("mouseleave",()=>hl(null));
+  });
+  document.querySelectorAll("#tree li").forEach(li=>{
+    const on=()=>hl(li.dataset.id), off=()=>hl(null);
+    li.addEventListener("mouseenter",on); li.addEventListener("mouseleave",off);
+    li.addEventListener("focus",on); li.addEventListener("blur",off);
+  });
+  document.querySelectorAll("[data-ruling]").forEach(a=>a.addEventListener("click", async e=>{
+    e.preventDefault();
+    const j = await (await fetch("/api/ruling/"+encodeURIComponent(a.dataset.ruling))).json();
+    $("#rulingView").innerHTML = `<div class="pane"><b>${esc(j.citation)}</b> (${esc(j.status)})\n\nQ: ${esc(j.question)}\n\nRuling: ${esc(j.ruling)}\n\n${esc(j.reasoning)}</div>`;
+  }));
+  if (ro) return;
+  const update = ()=>{
+    const by = $("#by").value.trim();
+    document.querySelectorAll("[data-excl]").forEach(c=>{ c.checked ? acks.excl.add(c.dataset.excl) : acks.excl.delete(c.dataset.excl); });
+    document.querySelectorAll("[data-amb]:checked").forEach(r=>acks.amb.set(r.dataset.amb, r.value));
+    const allExcl = B.ir.exclusions.every(x=>acks.excl.has(x.sourceText));
+    const allAmb = B.ir.ambiguities.every(a=>acks.amb.has(a.sourceText));
+    const anyRejected = [...acks.amb.values()].includes("reject");
+    $("#approve").disabled = !(by && allExcl && allAmb && !anyRejected);
+    $("#reject").disabled = !(by && $("#notes").value.trim());
+    if (anyRejected) $("#approve").title = "an ambiguity was rejected — use Reject with notes";
+  };
+  document.addEventListener("input", update); update();
+  $("#approve").addEventListener("click", ()=>submit("approve"));
+  $("#reject").addEventListener("click", ()=>submit("reject"));
+}
+function hl(id){
+  document.querySelectorAll(".span-mark").forEach(m=>m.classList.toggle("span-hl", !!id && m.dataset.id===id));
+  document.querySelectorAll("#tree li").forEach(li=>li.classList.toggle("span-hl", !!id && li.dataset.id===id));
+}
+async function submit(decision){
+  const res = await fetch("/api/signoff",{ method:"POST", headers:{"content-type":"application/json"},
+    body: JSON.stringify({ decision, by:$("#by").value.trim(), notes:$("#notes").value.trim(),
+      exclusionAcks:[...acks.excl], ambiguityAcks:[...acks.amb.keys()].filter(k=>acks.amb.get(k)==="accept"),
+      irSha:B.irSha }) });
+  const j = await res.json();
+  if (!res.ok){ alert(j.error + (res.status===409 ? " — reload the page." : "")); return; }
+  $("#bar").innerHTML = `<span class="standing">Recorded${j.rulingCitation ? " — ruling "+esc(j.rulingCitation) : ""}. Next: <code>${esc(j.next)}</code>. This server is shutting down.</span>`;
+}
+load();
+</script>

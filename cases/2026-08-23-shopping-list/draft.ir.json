@@ -1,0 +1,227 @@
+{
+  "caseId": "2026-08-23-shopping-list",
+  "sourceDoc": "intake.md",
+  "nouns": [
+    {
+      "name": "ShoppingTrip",
+      "role": "subject",
+      "fields": [
+        {
+          "name": "purchasedItems",
+          "type": "ListString",
+          "source": {
+            "quote": "3 bananas, strawberries, if you want, some chocolate and ice.",
+            "start": 17,
+            "end": 78
+          }
+        },
+        {
+          "name": "bananaCount",
+          "type": "Nat",
+          "source": {
+            "quote": "3 bananas",
+            "start": 17,
+            "end": 26
+          }
+        }
+      ],
+      "source": {
+        "quote": "# Shopping list",
+        "start": 0,
+        "end": 15
+      }
+    },
+    {
+      "name": "ListItem",
+      "role": "requirementItem",
+      "fields": [
+        {
+          "name": "itemName",
+          "type": "String",
+          "source": {
+            "quote": "strawberries",
+            "start": 28,
+            "end": 40
+          }
+        },
+        {
+          "name": "minQuantity",
+          "type": "Nat",
+          "source": {
+            "quote": "3 bananas",
+            "start": 17,
+            "end": 26
+          }
+        },
+        {
+          "name": "optional",
+          "type": "Bool",
+          "source": {
+            "quote": "if you want",
+            "start": 42,
+            "end": 53
+          }
+        }
+      ],
+      "source": {
+        "quote": "Shopping list",
+        "start": 2,
+        "end": 15
+      }
+    }
+  ],
+  "predicates": [
+    {
+      "name": "itemSatisfied",
+      "params": [
+        {
+          "name": "trip",
+          "noun": "ShoppingTrip"
+        },
+        {
+          "name": "item",
+          "noun": "ListItem"
+        }
+      ],
+      "body": {
+        "op": "or",
+        "args": [
+          {
+            "op": "eq",
+            "left": {
+              "op": "field",
+              "path": "item.optional"
+            },
+            "right": {
+              "op": "const",
+              "type": "Bool",
+              "value": true
+            }
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "contains",
+                "list": {
+                  "op": "field",
+                  "path": "trip.purchasedItems"
+                },
+                "item": {
+                  "op": "field",
+                  "path": "item.itemName"
+                }
+              },
+              {
+                "op": "or",
+                "args": [
+                  {
+                    "op": "ne",
+                    "left": {
+                      "op": "field",
+                      "path": "item.itemName"
+                    },
+                    "right": {
+                      "op": "const",
+                      "type": "String",
+                      "value": "bananas"
+                    }
+                  },
+                  {
+                    "op": "ge",
+                    "left": {
+                      "op": "field",
+                      "path": "trip.bananaCount"
+                    },
+                    "right": {
+                      "op": "field",
+                      "path": "item.minQuantity"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "source": {
+        "quote": "3 bananas, strawberries, if you want, some chocolate and ice.",
+        "start": 17,
+        "end": 78
+      },
+      "interpretationNotes": "One dispatching predicate over the four list items. An optional item is satisfied vacuously. A required item must appear by name in the trip's purchased items; the bananas branch additionally requires the purchased banana count to reach the item's minimum quantity of 3. Non-banana items carry minQuantity 1, which the presence check already discharges, so the quantity branch is a no-op for them."
+    }
+  ],
+  "requirement": {
+    "name": "shoppingListSatisfied",
+    "quantifier": "allOf",
+    "subjectNoun": "ShoppingTrip",
+    "itemsNoun": "ListItem",
+    "itemsData": {
+      "name": "shoppingItems",
+      "values": [
+        {
+          "itemName": "bananas",
+          "minQuantity": 3,
+          "optional": false
+        },
+        {
+          "itemName": "strawberries",
+          "minQuantity": 1,
+          "optional": false
+        },
+        {
+          "itemName": "chocolate",
+          "minQuantity": 1,
+          "optional": true
+        },
+        {
+          "itemName": "ice",
+          "minQuantity": 1,
+          "optional": true
+        }
+      ]
+    },
+    "predicate": "itemSatisfied"
+  },
+  "ambiguities": [
+    {
+      "sourceText": "if you want",
+      "options": [
+        "The qualifier scopes forward over 'some chocolate and ice', making both optional",
+        "The qualifier scopes backward over 'strawberries', making strawberries optional",
+        "The qualifier scopes over the whole list, making every item optional"
+      ],
+      "chosen": "The qualifier scopes forward over 'some chocolate and ice', making both optional",
+      "rationale": "The comma-delimited clause sits immediately before 'some chocolate and ice' and reads as a hedge introducing what follows; the two preceding items are stated flatly. Forward scope is the least disruptive reading and preserves 'bananas' and 'strawberries' as genuine requirements."
+    },
+    {
+      "sourceText": "some chocolate",
+      "options": [
+        "'some' fixes no numeric threshold: presence of chocolate suffices",
+        "'some' means a specific quantity to be supplied later"
+      ],
+      "chosen": "'some' fixes no numeric threshold: presence of chocolate suffices",
+      "rationale": "The prose gives no number for chocolate, unlike bananas. Inventing a threshold would add a requirement not in the text, so chocolate is modelled as minQuantity 1, discharged by the presence check."
+    },
+    {
+      "sourceText": "ice",
+      "options": [
+        "'ice' is a single list item named 'ice'",
+        "'ice' is short for 'ice cream' and is a different item"
+      ],
+      "chosen": "'ice' is a single list item named 'ice'",
+      "rationale": "The document says 'ice' and nothing more; expanding it to 'ice cream' would substitute a different good on inference alone. The literal name is used, and matching is by exact string membership."
+    }
+  ],
+  "exclusions": [
+    {
+      "sourceText": "# Shopping list",
+      "reason": "Document heading. It names the artefact but states no measurable condition, so it contributes no predicate branch; it is used only as the source span for the subject noun."
+    },
+    {
+      "sourceText": "3 bananas, strawberries, if you want, some chocolate and ice.",
+      "reason": "The prose fixes no shop, budget, deadline, or quality standard, and gives no unit of measure for 'ice'. Those dimensions are unmodelled: a GREEN verdict speaks only to item presence and the banana count, not to when, where, or how well the items were bought."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "tactic": "sorry",
+    "raw": "```lean\nsorry\n```",
+    "attempt": 1
+  },
+  {
+    "tactic": "native_decide",
+    "raw": "native_decide",
+    "attempt": 2
+  },
+  {
+    "tactic": "by decide",
+    "raw": "by decide",
+    "attempt": 3
+  }
+]

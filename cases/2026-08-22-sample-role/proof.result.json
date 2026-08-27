@@ -1,0 +1,15 @@
+{
+  "instance": "will",
+  "rung": 1,
+  "tactic": "decide",
+  "searchRequired": false,
+  "deferred": false,
+  "attempts": 1,
+  "history": [
+    {
+      "rung": 1,
+      "tactic": "decide",
+      "ok": true
+    }
+  ]
+}

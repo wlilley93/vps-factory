@@ -1,0 +1,29 @@
+{
+  "name": "traceability",
+  "passed": true,
+  "details": {
+    "hardFailures": [],
+    "uncoveredSentences": [
+      "Ambiguity gets resolved once, by you, not constantly re-surfaced over time.",
+      "AI agents have collapsed the cost of writing software to almost nothing.",
+      "They haven't touched the cost of deciding what to build, proving it's safe, or convincing a law firm to trust it.",
+      "The binding constraint has moved from generating code to understanding, verifying and judging — and that's still human work, and what we wan",
+      "A formally-verified specification does the alignment work standing meetings would — decisions get written down once — and single artefacts p",
+      "You run the discovery conversation and come out with these structured, machine-readable briefs, precise enough that an agent-assisted engine",
+      "Not what they say they need.",
+      "Turning those conversations into structured specifications our engineering process can build from directly.",
+      "Helping to make the call on which we invest in.",
+      "You should enjoy this kind of thinking.",
+      "Helping decide what gets built next.",
+      "You'll sit between what Sam and Lee hear from clients and what Edu is building — turning conversations into the specs, demos and prototypes ",
+      "Supporting with our compliance and procurement paperwork.",
+      "Not glamorous, but this is where deals get won or lost, and it needs someone who can hold their own with a General Counsel or a Head of IT.",
+      "Training, onboarding, first-90-days documentation.",
+      "Taken over DPIAs, RFP responses, and the rest of the compliance workload.",
+      "You think in responsibilities, not features.",
+      "You're technical enough to write your own specs and iterate them until they work.",
+      "If the job interests you but you don't tick every box, we still want to hear from you.",
+      "You probably won't enjoy this role if you want a backlog handed to you and a definition of done written by someone else; if you'd rather wri"
+    ]
+  }
+}

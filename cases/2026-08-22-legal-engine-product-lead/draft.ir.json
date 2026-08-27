@@ -1,0 +1,626 @@
+{
+  "caseId": "2026-08-22-legal-engine-product-lead",
+  "sourceDoc": "intake.md",
+  "nouns": [
+    {
+      "name": "Candidate",
+      "role": "subject",
+      "fields": [
+        {
+          "name": "name",
+          "type": "String",
+          "source": {
+            "quote": "Product Lead",
+            "start": 2,
+            "end": 14
+          }
+        },
+        {
+          "name": "productsShipped",
+          "type": "Nat",
+          "source": {
+            "quote": "You've built products before",
+            "start": 3015,
+            "end": 3043
+          }
+        },
+        {
+          "name": "machineBuildableSpecsWritten",
+          "type": "Nat",
+          "source": {
+            "quote": "specification a machine can build from",
+            "start": 402,
+            "end": 440
+          }
+        },
+        {
+          "name": "businessCasesBuilt",
+          "type": "Nat",
+          "source": {
+            "quote": "NPV, second-order effects",
+            "start": 1878,
+            "end": 1903
+          }
+        },
+        {
+          "name": "complianceArtifacts",
+          "type": "ListString",
+          "source": {
+            "quote": "DPIAs, RFP responses, InfoSec questionnaires",
+            "start": 2222,
+            "end": 2266
+          }
+        },
+        {
+          "name": "seniorStakeholderRooms",
+          "type": "Bool",
+          "source": {
+            "quote": "held your own in senior stakeholder rooms",
+            "start": 3287,
+            "end": 3328
+          }
+        },
+        {
+          "name": "claudeCodeSpecOpinions",
+          "type": "Bool",
+          "source": {
+            "quote": "opinions on how to write specs for it",
+            "start": 1551,
+            "end": 1588
+          }
+        },
+        {
+          "name": "discoveryConversationsRun",
+          "type": "Bool",
+          "source": {
+            "quote": "Sitting with our customers and getting to the bottom of what they actually need",
+            "start": 1296,
+            "end": 1375
+          }
+        },
+        {
+          "name": "crossCustomerSynthesis",
+          "type": "Bool",
+          "source": {
+            "quote": "spotting where three different requirements are secretly the same product",
+            "start": 1668,
+            "end": 1741
+          }
+        },
+        {
+          "name": "clientMaterialsProduced",
+          "type": "Bool",
+          "source": {
+            "quote": "Preparing the client-facing materials that go alongside a build",
+            "start": 2409,
+            "end": 2472
+          }
+        },
+        {
+          "name": "motivatedByEarlyStage",
+          "type": "Bool",
+          "source": {
+            "quote": "keen to experience what it's like inside a small AI company",
+            "start": 3533,
+            "end": 3592
+          }
+        }
+      ],
+      "source": {
+        "quote": "Who we're looking for",
+        "start": 75,
+        "end": 96
+      }
+    },
+    {
+      "name": "Duty",
+      "role": "requirementItem",
+      "fields": [
+        {
+          "name": "label",
+          "type": "String",
+          "source": {
+            "quote": "You'll be great in this role if",
+            "start": 2981,
+            "end": 3012
+          }
+        },
+        {
+          "name": "kind",
+          "type": "String",
+          "source": {
+            "quote": "That means",
+            "start": 185,
+            "end": 195
+          }
+        },
+        {
+          "name": "minCount",
+          "type": "Nat",
+          "source": {
+            "quote": "You've built products before",
+            "start": 3015,
+            "end": 3043
+          }
+        },
+        {
+          "name": "needle",
+          "type": "String",
+          "source": {
+            "quote": "DPIAs, RFP responses, InfoSec questionnaires",
+            "start": 2222,
+            "end": 2266
+          }
+        }
+      ],
+      "source": {
+        "quote": "You'll be great in this role if",
+        "start": 2981,
+        "end": 3012
+      }
+    }
+  ],
+  "predicates": [
+    {
+      "name": "meets",
+      "params": [
+        {
+          "name": "c",
+          "noun": "Candidate"
+        },
+        {
+          "name": "d",
+          "noun": "Duty"
+        }
+      ],
+      "body": {
+        "op": "or",
+        "args": [
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "shipped"
+                }
+              },
+              {
+                "op": "ge",
+                "left": {
+                  "op": "field",
+                  "path": "c.productsShipped"
+                },
+                "right": {
+                  "op": "field",
+                  "path": "d.minCount"
+                }
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "specs"
+                }
+              },
+              {
+                "op": "ge",
+                "left": {
+                  "op": "field",
+                  "path": "c.machineBuildableSpecsWritten"
+                },
+                "right": {
+                  "op": "field",
+                  "path": "d.minCount"
+                }
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "cases"
+                }
+              },
+              {
+                "op": "ge",
+                "left": {
+                  "op": "field",
+                  "path": "c.businessCasesBuilt"
+                },
+                "right": {
+                  "op": "field",
+                  "path": "d.minCount"
+                }
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "artifact"
+                }
+              },
+              {
+                "op": "contains",
+                "list": {
+                  "op": "field",
+                  "path": "c.complianceArtifacts"
+                },
+                "item": {
+                  "op": "field",
+                  "path": "d.needle"
+                }
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "stakeholders"
+                }
+              },
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "c.seniorStakeholderRooms"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "Bool",
+                  "value": true
+                }
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "claudecode"
+                }
+              },
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "c.claudeCodeSpecOpinions"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "Bool",
+                  "value": true
+                }
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "discovery"
+                }
+              },
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "c.discoveryConversationsRun"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "Bool",
+                  "value": true
+                }
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "synthesis"
+                }
+              },
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "c.crossCustomerSynthesis"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "Bool",
+                  "value": true
+                }
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "materials"
+                }
+              },
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "c.clientMaterialsProduced"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "Bool",
+                  "value": true
+                }
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "motivation"
+                }
+              },
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "c.motivatedByEarlyStage"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "Bool",
+                  "value": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "source": {
+        "quote": "you turn a customer's real problem into a specification a machine can build from",
+        "start": 360,
+        "end": 440
+      },
+      "interpretationNotes": "Duties dispatch on kind. The JD states no numeric thresholds anywhere in scope, so every Nat minimum is 1 — the weakest faithful reading (recorded as an ambiguity). Bool duties marked self-declared rest on the candidate's say-so; the JD offers no external test. The whole success section is excluded as a type error: its items are predicates over a future employment trajectory (Candidate x Company x Time), not over the applicant."
+    }
+  ],
+  "requirement": {
+    "name": "suitedToRole",
+    "quantifier": "allOf",
+    "subjectNoun": "Candidate",
+    "itemsNoun": "Duty",
+    "itemsData": {
+      "name": "roleDuties",
+      "values": [
+        {
+          "label": "Built products before",
+          "kind": "shipped",
+          "minCount": 1,
+          "needle": ""
+        },
+        {
+          "label": "Writes machine-buildable specs and iterates them",
+          "kind": "specs",
+          "minCount": 1,
+          "needle": ""
+        },
+        {
+          "label": "Held own in senior stakeholder rooms",
+          "kind": "stakeholders",
+          "minCount": 0,
+          "needle": ""
+        },
+        {
+          "label": "Claude Code spec opinions",
+          "kind": "claudecode",
+          "minCount": 0,
+          "needle": ""
+        },
+        {
+          "label": "Runs customer discovery conversations",
+          "kind": "discovery",
+          "minCount": 0,
+          "needle": ""
+        },
+        {
+          "label": "Cross-customer synthesis",
+          "kind": "synthesis",
+          "minCount": 0,
+          "needle": ""
+        },
+        {
+          "label": "Business cases: NPV, second-order effects",
+          "kind": "cases",
+          "minCount": 1,
+          "needle": ""
+        },
+        {
+          "label": "Compliance artifact: DPIA",
+          "kind": "artifact",
+          "minCount": 0,
+          "needle": "DPIA"
+        },
+        {
+          "label": "Compliance artifact: RFP response",
+          "kind": "artifact",
+          "minCount": 0,
+          "needle": "RFP response"
+        },
+        {
+          "label": "Client-facing build materials",
+          "kind": "materials",
+          "minCount": 0,
+          "needle": ""
+        },
+        {
+          "label": "Keen on early-stage AI company (self-declared)",
+          "kind": "motivation",
+          "minCount": 0,
+          "needle": ""
+        }
+      ]
+    },
+    "predicate": "meets"
+  },
+  "ambiguities": [
+    {
+      "sourceText": "Not so technical that you'd rather be building the thing yourself",
+      "options": [
+        "model the upper bound via a self-declared preference proxy",
+        "exclude as an unmeasurable interval"
+      ],
+      "chosen": "exclude as an unmeasurable interval",
+      "rationale": "The sentence pair defines an interval — technical enough to write specs, not so technical as to prefer building — whose endpoints have no measurable definition. Any proxy launders a personality judgment into data. It also sits oddly against this exercise, which rewards building."
+    },
+    {
+      "sourceText": "We're hiring for attitude and potential more than exact track record",
+      "options": [
+        "treat every Who-section item as a hard conjunct",
+        "soften to k-of-n with an unstated k",
+        "exclude the clause"
+      ],
+      "chosen": "treat every Who-section item as a hard conjunct",
+      "rationale": "This clause, read literally, demotes every requirement in its section to optional without saying which, or how many, matter. allOf-minus-an-unstated-k is not a specification. The formalisation keeps allOf and records the clause as the JD's central self-contradiction: it states requirements, then states they are not requirements."
+    },
+    {
+      "sourceText": "If you've used Claude Code and have opinions on how to write specs for it",
+      "options": [
+        "an illustrative example, not a requirement",
+        "a requirement — the JD's only concrete technical marker"
+      ],
+      "chosen": "a requirement — the JD's only concrete technical marker",
+      "rationale": "Grammatically it is an example (\"that's the kind of thing\"); practically it is the one testable technical signal in the document. Modelled as a duty so it is visible and falsifiable; flagged so the reviewer can strike it."
+    },
+    {
+      "sourceText": "You've built products before",
+      "options": [
+        "minimum 1",
+        "some higher unstated bar"
+      ],
+      "chosen": "minimum 1",
+      "rationale": "The in-scope sections contain no numbers at all — no years, no counts, no thresholds. Every Nat minimum in this model is therefore 1, the weakest faithful reading. If Legal Engine means more than 1 of anything, the JD does not say so."
+    }
+  ],
+  "exclusions": [
+    {
+      "sourceText": "Not so technical that you'd rather be building the thing yourself",
+      "reason": "unmeasurable upper bound on technicality; the interval's endpoints are undefined"
+    },
+    {
+      "sourceText": "have views on what makes them good",
+      "reason": "the products duty is modelled as a shipped-count; the 'views' half has no observable datum in a CV"
+    },
+    {
+      "sourceText": "You care about clarity and usability at a level that most people find slightly tiresome",
+      "reason": "the metric is other people's mild annoyance; unmeasurable"
+    },
+    {
+      "sourceText": "You'd rather have five things on your plate and figure out which two matter than have one narrow remit",
+      "reason": "a preference ordering, not a capability; no observable datum. Also in tension with 'Ambiguity gets resolved once' — the five-things person re-prioritises continuously"
+    },
+    {
+      "sourceText": "Cut Edu's client meetings by more than half",
+      "reason": "success metric with no recorded baseline (half of what number?), and a predicate over future employment, not the applicant. Also gameable: cancelling meetings is not success"
+    },
+    {
+      "sourceText": "Built out standardised product specs across everything we offer",
+      "reason": "future trajectory; 'everything we offer' is unversioned and will have changed by month six"
+    },
+    {
+      "sourceText": "Taken the lead on how we prioritise what to build",
+      "reason": "future trajectory; also contradicts 'Helping decide what gets built next' and 'Helping to make the call' — the JD assigns both helper and lead authority for the same decision without sequencing them"
+    },
+    {
+      "sourceText": "Earned the trust of a real chunk of our client base",
+      "reason": "'real chunk' names no threshold; direction-of-ideas is observable but the quantity is not"
+    }
+  ]
+}

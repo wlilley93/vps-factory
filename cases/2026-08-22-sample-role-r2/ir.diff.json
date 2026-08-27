@@ -1,0 +1,20 @@
+{
+  "deltas": [
+    {
+      "kind": "added",
+      "path": "itemsData[7+ years experience]",
+      "detail": "requirement item added"
+    },
+    {
+      "kind": "added",
+      "path": "itemsData[Kubernetes required]",
+      "detail": "requirement item added"
+    },
+    {
+      "kind": "removed",
+      "path": "itemsData[5+ years experience]",
+      "detail": "requirement item removed"
+    }
+  ],
+  "drift": []
+}

@@ -1,0 +1,16 @@
+{
+  "noun": "Candidate",
+  "values": {
+    "name": "Will Lilley",
+    "productsShipped": 3,
+    "machineBuildableSpecsWritten": 4,
+    "businessCasesBuilt": 0,
+    "complianceArtifacts": ["DPIA"],
+    "seniorStakeholderRooms": true,
+    "claudeCodeSpecOpinions": true,
+    "discoveryConversationsRun": true,
+    "crossCustomerSynthesis": true,
+    "clientMaterialsProduced": true,
+    "motivatedByEarlyStage": true
+  }
+}

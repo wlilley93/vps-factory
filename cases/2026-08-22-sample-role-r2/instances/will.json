@@ -1,0 +1,15 @@
+{
+  "noun": "Candidate",
+  "values": {
+    "name": "Will",
+    "yearsExp": 6,
+    "skills": [
+      "TypeScript",
+      "Lean"
+    ],
+    "launchesLed": 3,
+    "certifications": [
+      "AWS"
+    ]
+  }
+}

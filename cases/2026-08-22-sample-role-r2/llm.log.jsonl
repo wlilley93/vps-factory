@@ -1,0 +1,8 @@
+{"promptName":"drafter","provider":"mock","ms":0,"chars":7319,"at":"2026-08-22T16:10:23.723Z"}
+{"promptName":"drafter.e1","provider":"mock","ms":0,"chars":7319,"at":"2026-08-22T16:10:36.557Z"}
+{"promptName":"drafter.e2","provider":"mock","ms":0,"chars":7319,"at":"2026-08-22T16:10:36.567Z"}
+{"promptName":"drafter.e3","provider":"mock","ms":0,"chars":7333,"at":"2026-08-22T16:10:36.577Z"}
+{"promptName":"backtranslate","provider":"mock","ms":0,"chars":378,"at":"2026-08-22T16:10:36.582Z"}
+{"promptName":"faithfulness-judge","provider":"mock","ms":0,"chars":48,"at":"2026-08-22T16:10:36.582Z"}
+{"promptName":"test-proposer","provider":"mock","ms":0,"chars":1115,"at":"2026-08-22T16:10:36.582Z"}
+{"promptName":"adversary","provider":"mock","ms":0,"chars":27,"at":"2026-08-22T16:10:36.582Z"}

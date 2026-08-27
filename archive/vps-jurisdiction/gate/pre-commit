@@ -1,0 +1,5 @@
+#!/bin/sh
+# Foundry meta-gate (§21.7). Denials cite their law; exit 6 blocks the commit.
+# This directory is governed by [2026] VPS 3: changes to gate/ require a lawful
+# superseding enactment shipping in the same change.
+exec npx tsx src/cli.ts gate --staged

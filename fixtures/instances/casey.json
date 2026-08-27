@@ -1,0 +1,15 @@
+{
+  "noun": "Candidate",
+  "values": {
+    "name": "Casey",
+    "yearsExp": 7,
+    "skills": [
+      "Python",
+      "Go"
+    ],
+    "launchesLed": 4,
+    "certifications": [
+      "AWS"
+    ]
+  }
+}

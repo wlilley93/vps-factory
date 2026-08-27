@@ -1,0 +1,63 @@
+{
+  "instance": "will",
+  "rung": null,
+  "tactic": null,
+  "diagnosis": {
+    "failingDuties": [
+      "7+ years experience",
+      "Kubernetes required"
+    ],
+    "perDuty": [
+      {
+        "label": "7+ years experience",
+        "pass": false
+      },
+      {
+        "label": "TypeScript essential",
+        "pass": true
+      },
+      {
+        "label": "Led 2+ launches",
+        "pass": true
+      },
+      {
+        "label": "AWS certification",
+        "pass": true
+      },
+      {
+        "label": "Kubernetes required",
+        "pass": false
+      }
+    ],
+    "provenance": [
+      {
+        "label": "7+ years experience",
+        "quote": "Requirements"
+      },
+      {
+        "label": "Kubernetes required",
+        "quote": "Requirements"
+      }
+    ]
+  },
+  "history": [
+    {
+      "rung": 1,
+      "tactic": "decide",
+      "ok": false,
+      "error": "tactic 'decide' proved that the proposition\n  satisfiesRole will\nis false"
+    },
+    {
+      "rung": 2,
+      "tactic": "native_decide",
+      "ok": false,
+      "error": "tactic 'native_decide' evaluated that the proposition\n  satisfiesRole will\nis false"
+    },
+    {
+      "rung": 3,
+      "tactic": "simp; decide",
+      "ok": false,
+      "error": "simp made no progress"
+    }
+  ]
+}

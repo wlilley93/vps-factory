@@ -1,0 +1,13 @@
+{
+  "previousCase": "2026-08-22-sample-role",
+  "previousIrSha": "bfc04c1717175476ae35aa2fa41e142f13dc97750407a4b69a16f9c5210ccc1d",
+  "proseDiff": {
+    "added": [
+      "seven",
+      "Hands-on Kubernetes experience is required."
+    ],
+    "removed": [
+      "five"
+    ]
+  }
+}

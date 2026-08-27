@@ -1,0 +1,12 @@
+{
+  "name": "ensemble",
+  "passed": true,
+  "details": {
+    "convergence": 0.778,
+    "threshold": 0.6,
+    "divergent": [
+      "e1/e3: field sets differ",
+      "e2/e3: field sets differ"
+    ]
+  }
+}

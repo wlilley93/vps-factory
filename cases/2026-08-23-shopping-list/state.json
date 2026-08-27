@@ -1,0 +1,30 @@
+{
+  "caseId": "2026-08-23-shopping-list",
+  "familyId": "2026-08-23-shopping-list",
+  "revision": 1,
+  "supersedes": null,
+  "supersededBy": null,
+  "status": "checks-failed",
+  "history": [
+    {
+      "status": "intake",
+      "at": "2026-08-23T08:02:41.414Z",
+      "by": "foundry"
+    },
+    {
+      "status": "drafted",
+      "at": "2026-08-23T08:07:05.568Z",
+      "by": "s1"
+    },
+    {
+      "status": "precedent-checked",
+      "at": "2026-08-23T08:10:50.762Z",
+      "by": "s2"
+    },
+    {
+      "status": "checks-failed",
+      "at": "2026-08-23T08:26:45.935Z",
+      "by": "s3"
+    }
+  ]
+}

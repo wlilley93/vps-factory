@@ -1,0 +1,22 @@
+{
+  "provider": "mock",
+  "model": "claude-fable-5",
+  "ensembleK": 3,
+  "maxJsonRepairs": 3,
+  "maxProofRepairs": 5,
+  "roundtripThreshold": "faithful",
+  "ensembleThreshold": 0.6,
+  "leanTimeoutMs": 120000,
+  "prover": {
+    "enabled": false,
+    "backend": "mock",
+    "model": "deepseek-prover-v2:7b",
+    "endpoint": "http://localhost:11434",
+    "attempts": 8,
+    "temperature": 1.0,
+    "timeoutMsPerAttempt": 120000,
+    "maxTokens": 2048,
+    "allowNativeDecide": false
+  },
+  "courtRoot": "../vibe-justice-system"
+}

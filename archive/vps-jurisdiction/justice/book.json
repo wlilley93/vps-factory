@@ -1,0 +1,683 @@
+[
+  {
+    "year": 2026,
+    "ordinal": 30,
+    "slug": "actBookProtection",
+    "kind": "statute",
+    "rule": {
+      "type": "recordRequired",
+      "scope": "lean/Vjs/"
+    },
+    "entrenched": true,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Book Protection Act",
+    "summary": "The generated statute book is law: changing it by hand requires a record entry saying why. Enacted when the kernel became a pinned dependency and [2026] VPS 2's scope, lean/Vps/, ceased to exist. VPS 2 is entrenched and therefore cannot be repointed, so this supplements it rather than superseding it.",
+    "vectors": {
+      "deny": {
+        "pathsChanged": [
+          "lean/Vjs/Book.lean"
+        ],
+        "recordsAdded": 0
+      },
+      "allow": {
+        "pathsChanged": [
+          "lean/Vjs/Book.lean",
+          "record/0033.md"
+        ],
+        "recordsAdded": 1
+      }
+    }
+  },
+  {
+    "year": 2026,
+    "ordinal": 29,
+    "slug": "ruling2026N29",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on proof:general-theorems:tier",
+    "summary": "Filed from case 2026-08-23-general-theorems (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 28,
+    "slug": "ruling2026N28",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on schema:ir:types:v2",
+    "summary": "Filed from case 2026-08-23-schema-types-v2 (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 27,
+    "slug": "ruling2026N27",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on interpret:4cb0b250",
+    "summary": "Filed from case 2026-08-23-shopping-list (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 26,
+    "slug": "ruling2026N26",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on interpret:49e9db1e",
+    "summary": "Filed from case 2026-08-23-shopping-list (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 25,
+    "slug": "ruling2026N25",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on interpret:7543eaae",
+    "summary": "Filed from case 2026-08-23-shopping-list (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 24,
+    "slug": "ruling2026N24",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on model:2026-08-23-shopping-list:predicate:itemSatisfied",
+    "summary": "Filed from case 2026-08-23-shopping-list (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 23,
+    "slug": "ruling2026N23",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on model:2026-08-23-shopping-list:listitem:shape",
+    "summary": "Filed from case 2026-08-23-shopping-list (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 22,
+    "slug": "ruling2026N22",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on model:2026-08-23-shopping-list:shoppingtrip:shape",
+    "summary": "Filed from case 2026-08-23-shopping-list (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 21,
+    "slug": "ruling2026N21",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on signoff:2026-08-22-legal-engine-product-lead",
+    "summary": "Filed from case 2026-08-22-legal-engine-product-lead (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 20,
+    "slug": "ruling2026N20",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on model:2026-08-22-legal-engine-product-lead:predicate:meets",
+    "summary": "Filed from case 2026-08-22-legal-engine-product-lead (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 19,
+    "slug": "ruling2026N19",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on model:2026-08-22-legal-engine-product-lead:duty:shape",
+    "summary": "Filed from case 2026-08-22-legal-engine-product-lead (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 18,
+    "slug": "ruling2026N18",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on model:2026-08-22-legal-engine-product-lead:candidate:shape",
+    "summary": "Filed from case 2026-08-22-legal-engine-product-lead (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 17,
+    "slug": "ruling2026N17",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": {
+      "year": 2026,
+      "ordinal": 8
+    },
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Appeal ruling on model:predicate:meets",
+    "summary": "Supersedes [2026] VPS 8."
+  },
+  {
+    "year": 2026,
+    "ordinal": 16,
+    "slug": "ruling2026N16",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": {
+      "year": 2026,
+      "ordinal": 6
+    },
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Appeal ruling on model:candidate:shape",
+    "summary": "Supersedes [2026] VPS 6."
+  },
+  {
+    "year": 2026,
+    "ordinal": 15,
+    "slug": "ruling2026N15",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on interpret:05811fc3",
+    "summary": "Filed from case 2026-08-22-legal-engine-product-lead (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 14,
+    "slug": "ruling2026N14",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on interpret:97aa40ef",
+    "summary": "Filed from case 2026-08-22-legal-engine-product-lead (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 13,
+    "slug": "ruling2026N13",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on interpret:c91d2da0",
+    "summary": "Filed from case 2026-08-22-legal-engine-product-lead (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 12,
+    "slug": "ruling2026N12",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on interpret:1ce71c01",
+    "summary": "Filed from case 2026-08-22-legal-engine-product-lead (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 11,
+    "slug": "ruling2026N11",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on signoff:2026-08-22-sample-role-r2",
+    "summary": "Filed from case 2026-08-22-sample-role-r2 (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 10,
+    "slug": "ruling2026N10",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on signoff:2026-08-22-sample-role",
+    "summary": "Filed from case 2026-08-22-sample-role (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 9,
+    "slug": "ruling2026N9",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on interpret:737ba1c4",
+    "summary": "Filed from case 2026-08-22-sample-role (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 8,
+    "slug": "ruling2026N8",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on model:predicate:meets",
+    "summary": "Filed from case 2026-08-22-sample-role (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 7,
+    "slug": "ruling2026N7",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on model:duty:shape",
+    "summary": "Filed from case 2026-08-22-sample-role (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 6,
+    "slug": "ruling2026N6",
+    "kind": "ruling",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Ruling on model:candidate:shape",
+    "summary": "Filed from case 2026-08-22-sample-role (first-instance). Payload in .justice/judgments/."
+  },
+  {
+    "year": 2026,
+    "ordinal": 5,
+    "slug": "actJudgmentIntegrity",
+    "kind": "statute",
+    "rule": {
+      "type": "recordRequired",
+      "scope": ".justice/judgments/"
+    },
+    "entrenched": true,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Judgment Integrity Act",
+    "summary": "Hand edits to judgments without a record entry are denied; Foundry's own filings write their record stubs and pass.",
+    "vectors": {
+      "deny": {
+        "pathsChanged": [
+          ".justice/judgments/first-instance/001-x.md"
+        ],
+        "recordsAdded": 0
+      },
+      "allow": {
+        "pathsChanged": [
+          ".justice/judgments/first-instance/001-x.md",
+          "record/0009.md"
+        ],
+        "recordsAdded": 1
+      }
+    }
+  },
+  {
+    "year": 2026,
+    "ordinal": 4,
+    "slug": "actRecordDiscipline",
+    "kind": "statute",
+    "rule": {
+      "type": "recordRequired",
+      "scope": "law/"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Record Discipline Act",
+    "summary": "Changes to the law's prose mirror must add a record entry.",
+    "vectors": {
+      "deny": {
+        "pathsChanged": [
+          "law/2026-vps-4.md"
+        ],
+        "recordsAdded": 0
+      },
+      "allow": {
+        "pathsChanged": [
+          "law/2026-vps-4.md",
+          "record/0008.md"
+        ],
+        "recordsAdded": 1
+      }
+    }
+  },
+  {
+    "year": 2026,
+    "ordinal": 3,
+    "slug": "actGateIntegrity",
+    "kind": "statute",
+    "rule": {
+      "type": "pathForbidden",
+      "scope": "gate/"
+    },
+    "entrenched": false,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Gate Integrity Act",
+    "summary": "Hook scripts change only by a lawful superseding enactment shipping with the change.",
+    "vectors": {
+      "deny": {
+        "pathsChanged": [
+          "gate/pre-commit"
+        ],
+        "recordsAdded": 1
+      },
+      "allow": {
+        "pathsChanged": [
+          "src/cli.ts"
+        ],
+        "recordsAdded": 0
+      }
+    }
+  },
+  {
+    "year": 2026,
+    "ordinal": 2,
+    "slug": "actKernelProtection",
+    "kind": "statute",
+    "rule": {
+      "type": "recordRequired",
+      "scope": "lean/Vps/"
+    },
+    "entrenched": true,
+    "supersedes": null,
+    "authority": {
+      "type": "derived",
+      "parent": {
+        "year": 2026,
+        "ordinal": 1
+      }
+    },
+    "title": "Kernel Protection Act",
+    "summary": "Kernel changes must carry a record entry explaining themselves.",
+    "vectors": {
+      "deny": {
+        "pathsChanged": [
+          "lean/Vps/Gate.lean"
+        ],
+        "recordsAdded": 0
+      },
+      "allow": {
+        "pathsChanged": [
+          "lean/Vps/Gate.lean",
+          "record/0002.md"
+        ],
+        "recordsAdded": 1
+      }
+    }
+  },
+  {
+    "year": 2026,
+    "ordinal": 1,
+    "slug": "genesisInstrument",
+    "kind": "charter",
+    "rule": {
+      "type": "free"
+    },
+    "entrenched": true,
+    "supersedes": null,
+    "authority": {
+      "type": "sovereign"
+    },
+    "title": "Genesis",
+    "summary": "Root of every authority chain (vendored in Genesis.lean)."
+  }
+]

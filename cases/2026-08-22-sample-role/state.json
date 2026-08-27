@@ -1,0 +1,126 @@
+{
+  "caseId": "2026-08-22-sample-role",
+  "familyId": "2026-08-22-sample-role",
+  "revision": 1,
+  "supersedes": null,
+  "supersededBy": "2026-08-22-sample-role-r2",
+  "status": "proved",
+  "history": [
+    {
+      "status": "intake",
+      "at": "2026-08-22T16:08:42.686Z",
+      "by": "foundry"
+    },
+    {
+      "status": "drafted",
+      "at": "2026-08-22T16:08:42.970Z",
+      "by": "s1"
+    },
+    {
+      "status": "precedent-checked",
+      "at": "2026-08-22T16:08:43.269Z",
+      "by": "s2"
+    },
+    {
+      "status": "checks-failed",
+      "at": "2026-08-22T16:08:52.252Z",
+      "by": "s3"
+    },
+    {
+      "status": "checks-passed",
+      "at": "2026-08-22T16:09:44.558Z",
+      "by": "s3"
+    },
+    {
+      "status": "signed-off",
+      "at": "2026-08-22T16:09:53.317Z",
+      "by": "Will Lilley",
+      "note": "[2026] VPS 10"
+    },
+    {
+      "status": "compiled",
+      "at": "2026-08-22T16:09:53.581Z",
+      "by": "s5",
+      "note": "lean deferred (ledger)"
+    },
+    {
+      "status": "proved",
+      "at": "2026-08-22T16:09:53.841Z",
+      "by": "s6",
+      "note": "decide (deferred)"
+    },
+    {
+      "status": "verdict-green",
+      "at": "2026-08-22T16:09:54.084Z",
+      "by": "s7"
+    },
+    {
+      "status": "proof-failed",
+      "at": "2026-08-22T16:10:11.228Z",
+      "by": "s6",
+      "note": "fails: TypeScript essential"
+    },
+    {
+      "status": "verdict-red",
+      "at": "2026-08-22T16:10:11.481Z",
+      "by": "s7"
+    },
+    {
+      "status": "proof-failed",
+      "at": "2026-08-23T07:43:38.508Z",
+      "by": "s6",
+      "note": "fails: TypeScript essential"
+    },
+    {
+      "status": "proved",
+      "at": "2026-08-23T07:43:38.992Z",
+      "by": "s6",
+      "note": "decide"
+    },
+    {
+      "status": "compiled",
+      "at": "2026-08-23T07:45:43.727Z",
+      "by": "s5",
+      "note": "lean ok"
+    },
+    {
+      "status": "proof-failed",
+      "at": "2026-08-23T07:45:44.392Z",
+      "by": "s6",
+      "note": "fails: TypeScript essential"
+    },
+    {
+      "status": "verdict-red",
+      "at": "2026-08-23T07:45:44.392Z",
+      "by": "s7"
+    },
+    {
+      "status": "proved",
+      "at": "2026-08-23T07:45:44.564Z",
+      "by": "s6",
+      "note": "decide"
+    },
+    {
+      "status": "verdict-green",
+      "at": "2026-08-23T07:45:44.565Z",
+      "by": "s7"
+    },
+    {
+      "status": "proved",
+      "at": "2026-08-23T07:58:43.616Z",
+      "by": "s6",
+      "note": "decide"
+    },
+    {
+      "status": "verdict-green",
+      "at": "2026-08-23T07:58:43.896Z",
+      "by": "s7"
+    },
+    {
+      "status": "proved",
+      "at": "2026-08-23T07:59:33.230Z",
+      "by": "s6",
+      "note": "decide"
+    }
+  ]
+}

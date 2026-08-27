@@ -1,0 +1,64 @@
+{
+  "caseId": "2026-08-22-legal-engine-product-lead",
+  "familyId": "2026-08-22-legal-engine-product-lead",
+  "revision": 1,
+  "supersedes": null,
+  "supersededBy": null,
+  "status": "verdict-red",
+  "history": [
+    {
+      "status": "intake",
+      "at": "2026-08-22T16:14:10.443Z",
+      "by": "foundry"
+    },
+    {
+      "status": "drafted",
+      "at": "2026-08-22T16:14:10.718Z",
+      "by": "s1"
+    },
+    {
+      "status": "precedent-checked",
+      "at": "2026-08-22T16:15:24.475Z",
+      "by": "s2"
+    },
+    {
+      "status": "checks-passed",
+      "at": "2026-08-22T16:15:29.684Z",
+      "by": "s3"
+    },
+    {
+      "status": "signed-off",
+      "at": "2026-08-22T16:19:44.904Z",
+      "by": "Will Lilley",
+      "note": "[2026] VPS 21"
+    },
+    {
+      "status": "compiled",
+      "at": "2026-08-22T16:19:45.420Z",
+      "by": "s5",
+      "note": "lean deferred (ledger)"
+    },
+    {
+      "status": "proof-failed",
+      "at": "2026-08-22T16:19:45.701Z",
+      "by": "s6",
+      "note": "fails: Business cases: NPV, second-order effects; Compliance artifact: RFP response"
+    },
+    {
+      "status": "verdict-red",
+      "at": "2026-08-22T16:19:45.964Z",
+      "by": "s7"
+    },
+    {
+      "status": "proof-failed",
+      "at": "2026-08-23T07:42:59.445Z",
+      "by": "s6",
+      "note": "fails: Business cases: NPV, second-order effects; Compliance artifact: RFP response"
+    },
+    {
+      "status": "verdict-red",
+      "at": "2026-08-23T07:43:21.854Z",
+      "by": "s7"
+    }
+  ]
+}

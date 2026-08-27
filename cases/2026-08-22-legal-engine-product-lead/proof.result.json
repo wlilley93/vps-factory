@@ -1,0 +1,87 @@
+{
+  "instance": "will-lilley",
+  "rung": null,
+  "tactic": null,
+  "diagnosis": {
+    "failingDuties": [
+      "Business cases: NPV, second-order effects",
+      "Compliance artifact: RFP response"
+    ],
+    "perDuty": [
+      {
+        "label": "Built products before",
+        "pass": true
+      },
+      {
+        "label": "Writes machine-buildable specs and iterates them",
+        "pass": true
+      },
+      {
+        "label": "Held own in senior stakeholder rooms",
+        "pass": true
+      },
+      {
+        "label": "Claude Code spec opinions",
+        "pass": true
+      },
+      {
+        "label": "Runs customer discovery conversations",
+        "pass": true
+      },
+      {
+        "label": "Cross-customer synthesis",
+        "pass": true
+      },
+      {
+        "label": "Business cases: NPV, second-order effects",
+        "pass": false
+      },
+      {
+        "label": "Compliance artifact: DPIA",
+        "pass": true
+      },
+      {
+        "label": "Compliance artifact: RFP response",
+        "pass": false
+      },
+      {
+        "label": "Client-facing build materials",
+        "pass": true
+      },
+      {
+        "label": "Keen on early-stage AI company (self-declared)",
+        "pass": true
+      }
+    ],
+    "provenance": [
+      {
+        "label": "Business cases: NPV, second-order effects",
+        "quote": "you turn a customer's real problem into a specification a machine can build from"
+      },
+      {
+        "label": "Compliance artifact: RFP response",
+        "quote": "you turn a customer's real problem into a specification a machine can build from"
+      }
+    ]
+  },
+  "history": [
+    {
+      "rung": 1,
+      "tactic": "decide",
+      "ok": false,
+      "error": "tactic 'decide' proved that the proposition\n  suitedToRole willlilley\nis false"
+    },
+    {
+      "rung": 2,
+      "tactic": "native_decide",
+      "ok": false,
+      "error": "tactic 'native_decide' evaluated that the proposition\n  suitedToRole willlilley\nis false"
+    },
+    {
+      "rung": 3,
+      "tactic": "simp; decide",
+      "ok": false,
+      "error": "simp made no progress"
+    }
+  ]
+}

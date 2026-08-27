@@ -1,0 +1,8 @@
+{
+  "name": "traceability",
+  "passed": true,
+  "details": {
+    "hardFailures": [],
+    "uncoveredSentences": []
+  }
+}

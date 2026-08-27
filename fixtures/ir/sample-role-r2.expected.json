@@ -1,0 +1,306 @@
+{
+  "caseId": "2026-08-22-sample-role-r2",
+  "sourceDoc": "intake.md",
+  "nouns": [
+    {
+      "name": "Candidate",
+      "role": "subject",
+      "fields": [
+        {
+          "name": "name",
+          "type": "String",
+          "source": {
+            "quote": "Senior Software Engineer",
+            "start": 16,
+            "end": 40
+          }
+        },
+        {
+          "name": "yearsExp",
+          "type": "Nat",
+          "source": {
+            "quote": "at least seven years of professional software experience",
+            "start": 176,
+            "end": 232
+          }
+        },
+        {
+          "name": "skills",
+          "type": "ListString",
+          "source": {
+            "quote": "Fluency in TypeScript is essential",
+            "start": 234,
+            "end": 268
+          }
+        },
+        {
+          "name": "launchesLed",
+          "type": "Nat",
+          "source": {
+            "quote": "led at least two production launches",
+            "start": 369,
+            "end": 405
+          }
+        },
+        {
+          "name": "certifications",
+          "type": "ListString",
+          "source": {
+            "quote": "hold a current AWS certification",
+            "start": 451,
+            "end": 483
+          }
+        }
+      ],
+      "source": {
+        "quote": "We are hiring a Senior Software Engineer",
+        "start": 0,
+        "end": 40
+      }
+    },
+    {
+      "name": "Duty",
+      "role": "requirementItem",
+      "fields": [
+        {
+          "name": "label",
+          "type": "String",
+          "source": {
+            "quote": "Requirements",
+            "start": 141,
+            "end": 153
+          }
+        },
+        {
+          "name": "kind",
+          "type": "String",
+          "source": {
+            "quote": "Requirements",
+            "start": 141,
+            "end": 153
+          }
+        },
+        {
+          "name": "minCount",
+          "type": "Nat",
+          "source": {
+            "quote": "at least",
+            "start": 176,
+            "end": 184
+          }
+        },
+        {
+          "name": "needle",
+          "type": "String",
+          "source": {
+            "quote": "TypeScript",
+            "start": 245,
+            "end": 255
+          }
+        }
+      ],
+      "source": {
+        "quote": "Requirements",
+        "start": 141,
+        "end": 153
+      }
+    }
+  ],
+  "predicates": [
+    {
+      "name": "meets",
+      "params": [
+        {
+          "name": "c",
+          "noun": "Candidate"
+        },
+        {
+          "name": "d",
+          "noun": "Duty"
+        }
+      ],
+      "body": {
+        "op": "or",
+        "args": [
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "minYears"
+                }
+              },
+              {
+                "op": "ge",
+                "left": {
+                  "op": "field",
+                  "path": "c.yearsExp"
+                },
+                "right": {
+                  "op": "field",
+                  "path": "d.minCount"
+                }
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "skill"
+                }
+              },
+              {
+                "op": "contains",
+                "list": {
+                  "op": "field",
+                  "path": "c.skills"
+                },
+                "item": {
+                  "op": "field",
+                  "path": "d.needle"
+                }
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "launches"
+                }
+              },
+              {
+                "op": "ge",
+                "left": {
+                  "op": "field",
+                  "path": "c.launchesLed"
+                },
+                "right": {
+                  "op": "field",
+                  "path": "d.minCount"
+                }
+              }
+            ]
+          },
+          {
+            "op": "and",
+            "args": [
+              {
+                "op": "eq",
+                "left": {
+                  "op": "field",
+                  "path": "d.kind"
+                },
+                "right": {
+                  "op": "const",
+                  "type": "String",
+                  "value": "cert"
+                }
+              },
+              {
+                "op": "contains",
+                "list": {
+                  "op": "field",
+                  "path": "c.certifications"
+                },
+                "item": {
+                  "op": "field",
+                  "path": "d.needle"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "source": {
+        "quote": "Requirements",
+        "start": 141,
+        "end": 153
+      },
+      "interpretationNotes": "Each duty is tagged with a kind; meets dispatches on kind. minCount is 0 where unused; needle is \"\" where unused."
+    }
+  ],
+  "requirement": {
+    "name": "satisfiesRole",
+    "quantifier": "allOf",
+    "subjectNoun": "Candidate",
+    "itemsNoun": "Duty",
+    "predicate": "meets",
+    "itemsData": {
+      "name": "jdDuties",
+      "values": [
+        {
+          "label": "7+ years experience",
+          "kind": "minYears",
+          "minCount": 7,
+          "needle": ""
+        },
+        {
+          "label": "TypeScript essential",
+          "kind": "skill",
+          "minCount": 0,
+          "needle": "TypeScript"
+        },
+        {
+          "label": "Led 2+ launches",
+          "kind": "launches",
+          "minCount": 2,
+          "needle": ""
+        },
+        {
+          "label": "AWS certification",
+          "kind": "cert",
+          "minCount": 0,
+          "needle": "AWS"
+        },
+        {
+          "label": "Kubernetes required",
+          "kind": "skill",
+          "minCount": 0,
+          "needle": "Kubernetes"
+        }
+      ]
+    }
+  },
+  "ambiguities": [
+    {
+      "sourceText": "communicates clearly with stakeholders",
+      "options": [
+        "model as declared skill membership",
+        "exclude as unmeasurable in v1"
+      ],
+      "chosen": "exclude as unmeasurable in v1",
+      "rationale": "No objective datum in a CV decides this; modelling it as a self-declared skill would launder vagueness into false precision."
+    }
+  ],
+  "exclusions": [
+    {
+      "sourceText": "communicates clearly with stakeholders",
+      "reason": "unmeasurable in v1 type system; surfaced for human decision at sign-off"
+    }
+  ]
+}

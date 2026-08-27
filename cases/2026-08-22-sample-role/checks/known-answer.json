@@ -1,0 +1,9 @@
+{
+  "name": "known-answer",
+  "passed": true,
+  "details": {
+    "mismatches": [],
+    "total": 5,
+    "leanDeferred": true
+  }
+}

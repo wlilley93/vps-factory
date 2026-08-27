@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VPS docket</title>
+<style>
+  /* Self-contained by mandate: no CDN, no webfont, no external request of any kind.
+     The CSP the server sends would block them anyway. */
+  :root {
+    --bg: #f6f6f3;
+    --panel: #fffffe;
+    --ink: #1c1e1c;
+    --soft: #5b6058;
+    --faint: #8b9088;
+    --rule: #dcded6;
+    --accent: #37527a;
+    --accent-bg: #e6ebf3;
+    --ok: #33684b;
+    --ok-bg: #e2eee6;
+    --no: #98342c;
+    --no-bg: #f5e2df;
+    --warn: #7d6216;
+    --warn-bg: #f2ebd4;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141615; --panel: #1b1e1c; --ink: #e6e8e2; --soft: #a3a89d; --faint: #757a71;
+      --rule: #2c302c; --accent: #8fabd6; --accent-bg: #1e2836;
+      --ok: #7fc79a; --ok-bg: #17281d; --no: #e09b93; --no-bg: #2f1d1a;
+      --warn: #d3b566; --warn-bg: #2b2415;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--sans); font-size: 15px; line-height: 1.55;
+  }
+  a { color: var(--accent); }
+  .mono { font-family: var(--mono); }
+  header.top {
+    padding: 1.4rem 5vw 1.1rem; border-bottom: 1px solid var(--rule);
+    display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+  }
+  header.top h1 { font-size: 1.1rem; margin: 0; letter-spacing: .01em; }
+  header.top .sub { color: var(--faint); font-family: var(--mono); font-size: .78rem; }
+  main { padding: 0 5vw 4rem; max-width: 1200px; }
+
+  h2 { font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; color: var(--faint);
+       font-family: var(--mono); font-weight: 600; margin: 2.2rem 0 .7rem; }
+
+  .set { background: var(--panel); border: 1px solid var(--rule); border-radius: 5px;
+         margin-bottom: 1rem; overflow: hidden; }
+  .set > summary { padding: .8rem 1rem; cursor: pointer; display: flex; gap: .7rem;
+                   align-items: center; flex-wrap: wrap; list-style: none; }
+  .set > summary::-webkit-details-marker { display: none; }
+  .set > summary::before { content: "▸"; color: var(--faint); transition: transform .12s; }
+  .set[open] > summary::before { transform: rotate(90deg); }
+  .set .name { font-family: var(--mono); font-weight: 600; }
+  .set .meta { color: var(--faint); font-size: .8rem; margin-left: auto; font-family: var(--mono); }
+  .body { border-top: 1px solid var(--rule); padding: 1rem; }
+
+  .chip { font-family: var(--mono); font-size: .68rem; padding: .1rem .42rem; border-radius: 3px;
+          letter-spacing: .03em; white-space: nowrap; }
+  .c-ok { background: var(--ok-bg); color: var(--ok); }
+  .c-no { background: var(--no-bg); color: var(--no); }
+  .c-warn { background: var(--warn-bg); color: var(--warn); }
+  .c-neutral { background: var(--accent-bg); color: var(--accent); }
+
+  table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+  th { text-align: left; font-family: var(--mono); font-size: .66rem; text-transform: uppercase;
+       letter-spacing: .07em; color: var(--faint); padding: .35rem .5rem; border-bottom: 1px solid var(--rule); font-weight: 600; }
+  td { padding: .45rem .5rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  td.matter { font-family: var(--mono); }
+  .flip { color: var(--no); font-family: var(--mono); font-size: .7rem; }
+  .fails { display: block; color: var(--soft); font-size: .78rem; margin-top: .15rem; }
+
+  .banner { border-radius: 4px; padding: .7rem .9rem; margin: .8rem 0; font-size: .85rem; }
+  .b-excl { background: var(--no-bg); color: var(--no); border: 1px solid var(--no); }
+  .b-defer { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn); }
+  .b-super { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn); font-family: var(--mono); font-size: .8rem; }
+  .banner ul { margin: .5rem 0 0; padding-left: 1.1rem; }
+  .banner li { margin-bottom: .3rem; }
+  .banner .q { font-style: italic; }
+
+  .amb { border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 0 4px 4px 0;
+         padding: .7rem .9rem; margin: .6rem 0; background: var(--panel); }
+  .amb .src { font-style: italic; color: var(--soft); }
+  .amb .chose { margin: .35rem 0 .2rem; }
+  .amb .chose b { font-family: var(--mono); font-size: .8rem; color: var(--accent); }
+  .amb .why { color: var(--soft); font-size: .85rem; }
+
+  ol.stages { list-style: none; margin: .4rem 0 0; padding: 0; }
+  ol.stages li { display: grid; grid-template-columns: 6.5rem 9rem 1fr; gap: .6rem;
+                 padding: .3rem 0; border-bottom: 1px solid var(--rule); font-size: .82rem; }
+  ol.stages .t { font-family: var(--mono); color: var(--accent); font-size: .76rem; }
+  ol.stages .s { font-family: var(--mono); font-size: .76rem; }
+  ol.stages .n { color: var(--soft); }
+
+  pre { font-family: var(--mono); font-size: .76rem; line-height: 1.5; overflow-x: auto;
+        background: var(--bg); border: 1px solid var(--rule); border-radius: 4px; padding: .7rem; margin: .5rem 0; }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+  .note { color: var(--soft); font-size: .85rem; }
+  footer { padding: 1.6rem 5vw 3rem; color: var(--faint); font-size: .78rem;
+           border-top: 1px solid var(--rule); max-width: 1200px; }
+  button.link { background: none; border: none; color: var(--accent); font: inherit;
+                cursor: pointer; padding: 0; text-decoration: underline; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>VPS docket</h1>
+  <span class="sub" id="rootline">loading…</span>
+  <span class="sub" style="margin-left:auto">read-only — sign-off happens in <span class="mono">vps review &lt;case&gt; --web</span></span>
+</header>
+<main id="app">loading…</main>
+<footer>
+  Every GREEN here is conditional on a human sign-off of the formalization and on the truth of
+  the instance data. This page shows records, not proofs.
+</footer>
+
+<script>
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;" }[c]));
+const get = async u => (await fetch(u)).json();
+
+// Vocabulary is governed by §18.1.16: no "verified", no celebration, no tick.
+// A gate reads as a stop, not a task to clear.
+function statusChip(c) {
+  if (c.broken) return `<span class="chip c-no">unreadable</span>`;
+  if (c.supersededBy) return `<span class="chip c-warn">superseded</span>`;
+  if (c.awaitingSignoff) return `<span class="chip c-warn">awaiting human sign-off</span>`;
+  if (c.status === "verdict-green") return `<span class="chip c-ok">green — conditional</span>`;
+  if (c.status === "verdict-red") return `<span class="chip c-no">red</span>`;
+  return `<span class="chip c-neutral">${esc(c.status)}</span>`;
+}
+
+function verdictCell(m) {
+  if (!m) return `<span class="chip c-neutral">—</span>`;
+  if (m.verdict === "green") return `<span class="chip c-ok">green — conditional</span>`;
+  if (m.verdict === "red") return `<span class="chip c-no">red</span>`;
+  return `<span class="chip c-neutral">not proved</span>`;
+}
+
+function mattersGrid(set) {
+  if (!set.matterNames.length) return `<p class="note">No matters registered against this requirement set yet.</p>`;
+  const revs = set.revisions;
+  const head = revs.map(r => `<th>r${r.revision} <span class="mono" style="font-weight:400">${esc(r.caseId)}</span></th>`).join("");
+  const rows = set.matterNames.map(name => {
+    const cells = revs.map((r, i) => {
+      const m = r.matters.find(x => x.name === name);
+      const prev = i > 0 ? revs[i-1].matters.find(x => x.name === name) : null;
+      const flipped = prev && m && prev.verdict && m.verdict && prev.verdict !== m.verdict;
+      return `<td>${verdictCell(m)}${flipped ? `<span class="flip"> ▲ FLIP from ${esc(prev.verdict)}</span>` : ""}` +
+             (m && m.failing.length ? `<span class="fails">fails: ${m.failing.map(esc).join("; ")}</span>` : "") + `</td>`;
+    }).join("");
+    return `<tr><td class="matter">${esc(name)}</td>${cells}</tr>`;
+  }).join("");
+  return `<table><thead><tr><th>matter</th>${head}</tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function stageNarration(state) {
+  const why = {
+    "intake": "Prose in, byte-immutable from here — every span offset depends on it.",
+    "drafted": "An LLM proposed the typed IR. It never writes Lean.",
+    "precedent-checked": "Judgment calls put to the court and checked against standing rulings.",
+    "checks-passed": "Five mechanical checks gathered evidence of faithfulness.",
+    "checks-failed": "A check refused the draft.",
+    "signed-off": "A human accepted the formalization. Nothing downstream is stronger than this.",
+    "rejected": "The formalization was sent back.",
+    "compiled": "IR rendered to Lean by deterministic codegen.",
+    "proved": "Lean accepted the theorem.",
+    "proof-failed": "Lean refused it, and named which requirements failed.",
+    "verdict-green": "Published, with its conditions.",
+    "verdict-red": "Published, naming each failing requirement."
+  };
+  return `<ol class="stages">` + state.history.map(h => `
+    <li><span class="t">${esc(h.at.slice(11,23))}</span>
+        <span class="s">${esc(h.status)}</span>
+        <span class="n">${esc(h.note || why[h.status] || "")} <span style="color:var(--faint)">— ${esc(h.by)}</span></span></li>`).join("") + `</ol>`;
+}
+
+async function caseDetail(id, el) {
+  el.innerHTML = `<p class="note">loading…</p>`;
+  const b = await get(`/api/case/${encodeURIComponent(id)}`);
+  if (b.partial) { el.innerHTML = `<p class="note">This case has not been drafted yet.</p>${stageNarration(b.state)}`; return; }
+  const ir = b.ir;
+  let h = "";
+
+  if (b.state.supersededBy)
+    h += `<div class="banner b-super">SUPERSEDED by ${esc(b.state.supersededBy)} — this verdict remains a true statement about this revision, and about nothing later.</div>`;
+
+  const deferred = (b.checks?.knownAnswer?.details?.leanDeferred) === true;
+  if (deferred)
+    h += `<div class="banner b-defer">Lean deferred for part of this case — those results are expected, not machine-checked.</div>`;
+
+  if (ir.exclusions?.length)
+    h += `<div class="banner b-excl"><b>${ir.exclusions.length} exclusion${ir.exclusions.length>1?"s":""} — NOT covered by any verdict here.</b><ul>` +
+         ir.exclusions.map(x => `<li><span class="q">“${esc(x.sourceText)}”</span><br>${esc(x.reason)}</li>`).join("") + `</ul></div>`;
+
+  h += `<h2>The judgment calls</h2>`;
+  h += ir.ambiguities?.length
+    ? ir.ambiguities.map(a => `<div class="amb">
+        <div class="src">“${esc(a.sourceText)}”</div>
+        <div class="chose">chose <b>${esc(a.chosen)}</b> from ${a.options.length} options</div>
+        <div class="why">${esc(a.rationale)}</div></div>`).join("")
+    : `<p class="note">None recorded.</p>`;
+
+  h += `<h2>What is being checked</h2><pre>${esc((ir.requirement.itemsData.values || [])
+        .map(v => JSON.stringify(v)).join("\n"))}</pre>`;
+
+  h += `<div class="cols"><div><h2>Checks</h2><table><tbody>` +
+    Object.entries(b.checks || {}).filter(([k]) => k !== "summary").map(([k, v]) =>
+      `<tr><td class="mono">${esc(k)}</td><td>${v ? (v.passed
+        ? `<span class="chip c-ok">pass</span>` : `<span class="chip c-no">fail</span>`) : `<span class="chip c-neutral">—</span>`}</td></tr>`).join("") +
+    `</tbody></table></div><div><h2>Precedent</h2>` +
+    (b.precedent ? `<p class="note mono">applied: ${b.precedent.applied.join(", ") || "—"}<br>filed: ${b.precedent.filed.join(", ") || "—"}<br>conflicts: ${b.precedent.conflicts.length || 0}</p>` : `<p class="note">—</p>`) +
+    `</div></div>`;
+
+  h += `<h2>Stage by stage</h2>${stageNarration(b.state)}`;
+
+  if (b.signoff)
+    h += `<h2>Sign-off</h2><p class="note">${esc(b.signoff.by)} · ${esc(b.signoff.at)} · ruling ${esc(b.signoff.rulingCitation || "—")}<br>
+          <span class="mono" style="font-size:.75rem">IR ${esc(String(b.irSha).slice(0,16))}…</span><br>${esc(b.signoff.notes || "")}</p>`;
+  else
+    h += `<h2>Sign-off</h2><p class="note">Not signed off. The gate is a stop, not a queue item — it opens only when a person runs <span class="mono">vps review ${esc(id)} --web</span>.</p>`;
+
+  const v = await get(`/api/case/${encodeURIComponent(id)}/verdicts`);
+  if (v.files?.length) h += `<h2>Verdicts</h2>` + v.files.map(f => `<pre>${esc(f.text)}</pre>`).join("");
+
+  el.innerHTML = h;
+}
+
+async function main() {
+  const health = await get("/api/health");
+  document.getElementById("rootline").textContent = health.root + "  ·  " + health.cases + " cases";
+  const { sets } = await get("/api/sets");
+  const app = document.getElementById("app");
+  app.innerHTML = `<h2>Source requirement sets</h2>` + sets.map(s => `
+    <details class="set" data-family="${esc(s.familyId)}">
+      <summary>
+        <span class="name">${esc(s.familyId)}</span>
+        ${statusChip(s.revisions[s.revisions.length-1])}
+        <span class="meta">${s.revisions.length} revision${s.revisions.length>1?"s":""} · ${s.matterNames.length} matter${s.matterNames.length===1?"":"s"}</span>
+      </summary>
+      <div class="body">
+        <h2>Matters against this requirement set</h2>
+        ${mattersGrid(s)}
+        <h2>Revisions</h2>
+        <p class="note">${s.revisions.map(r => `<button class="link" data-case="${esc(r.caseId)}">${esc(r.caseId)}</button> (r${r.revision}, ${esc(r.status)}, ${r.duties} duties, ${r.ambiguities} ambiguities, ${r.exclusions} exclusions)`).join("<br>")}</p>
+        <div class="detail"></div>
+      </div>
+    </details>`).join("");
+
+  app.addEventListener("click", e => {
+    const b = e.target.closest("button[data-case]");
+    if (!b) return;
+    caseDetail(b.dataset.case, b.closest(".body").querySelector(".detail"));
+  });
+}
+main().catch(e => { document.getElementById("app").textContent = "failed to load: " + e; });
+</script>
+</body>
+</html>

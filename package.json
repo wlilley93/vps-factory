@@ -1,0 +1,25 @@
+{
+  "name": "vps-factory",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "vps": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc && node scripts/copy-assets.mjs",
+    "test": "vitest run",
+    "vps": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "execa": "^9.3.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  },
+  "description": "A prose->proof factory, constitutionally governed. Raw requirements enter; a machine-checkable verdict exits."
+}

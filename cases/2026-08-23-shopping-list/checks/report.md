@@ -1,0 +1,54 @@
+# Checks report
+
+## traceability — PASS
+```json
+{
+  "hardFailures": [],
+  "uncoveredSentences": []
+}
+```
+
+## ensemble — FAIL
+```json
+{
+  "convergence": 0.111,
+  "threshold": 0.6,
+  "divergent": [
+    "e1/e2: field sets differ",
+    "e1/e2: predicate bodies differ",
+    "e1/e3: field sets differ",
+    "e1/e3: predicate bodies differ",
+    "e1/e3: itemsData length differs",
+    "e2/e3: field sets differ",
+    "e2/e3: predicate bodies differ",
+    "e2/e3: itemsData length differs"
+  ]
+}
+```
+
+## roundtrip — PASS
+```json
+{
+  "backtranslation": "## Requirements prose (back-translated from the IR)\n\n### Scope\n\nThe requirement judges a single **shopping trip**. A trip is characterised by exactly two things: the list of item names purchased, and a count of bananas purchased. Nothing else about the trip is recorded or examined.\n\nThe trip is measured against a fixed list of four items: **bananas**, **strawberries**, **chocolate**, **ice**. Each carries a name, a minimum quantity, and a flag saying whether it is optional. Bananas are required with minimum quantity 3; strawberries are required with minimum quantity 1; chocolate and ice are optional, each with minimum quantity 1.\n\n### The requirement\n\nA shopping trip satisfies the shopping list when **every one of the four items is satisfied**. An item is satisfied when either:\n\n- the item is marked optional; or\n- the item's name appears among the trip's purchased items, **and** — only when that name is the literal string `\"bananas\"` — the trip's banana count is at least the item's minimum quantity.\n\nApplied to the four items, that reduces to exactly two conditions:\n\n1. **Bananas.** The purchased-items list must contain `\"bananas\"`, and the banana count must be 3 or more.\n2. **Strawberries.** The purchased-items list must contain `\"strawberries\"`.\n\nChocolate and ice impose no condition at all. Being optional satisfies them outright, before any check on what was purchased — so the trip passes whether or not chocolate or ice was bought.\n\n### Readings the requirement commits to\n\n- **\"If you want\" scopes forward.** Chocolate and ice are the optional items. Bananas and strawberries are treated as genuine obligations.\n- **\"Some chocolate\" sets no number.** Chocolate's minimum quantity is 1, and since only bananas trigger a quantity check, presence would suffice were it required at all. No numeric threshold is invented for it.\n- **\"Ice\" is taken literally.** The required name is `\"ice\"`, not \"ice cream\" or any expansion. Matching is exact string membership in the purchased list.\n\n### What the requirement does not say\n\n- **No quantities except bananas.** Only bananas are counted. One strawberry satisfies strawberries. The minimum quantities recorded for strawberries, chocolate and ice are inert — the check never consults them, because the quantity comparison is gated on the item's name being `\"bananas\"` specifically, not on the quantity data itself.\n- **No unit of measure for ice**, and none needed, since ice is optional.\n- **No shop, budget, deadline, or quality standard.** The requirement says nothing about where, when, at what price, or how good. A trip that buys 3 bananas and strawberries at any price, any shop, any date passes.\n- **Bananas need both facts independently.** A count of 3 with `\"bananas\"` missing from the list fails; `\"bananas\"` in the list with a count below 3 fails. The two are not derived from each other.\n- **No prohibition on extras.** Buying items outside the list neither helps nor harms. Duplicates in the purchased list are not constrained.\n- **No name normalisation.** Matching is by exact string. `\"Bananas\"`, `\"banana\"`, or `\"fresh bananas\"` would not match the required `\"bananas\"`.\n\nA passing verdict therefore asserts only this: the purchased list contained the exact strings `\"bananas\"` and `\"strawberries\"`, and at least 3 bananas were bought. It asserts nothing about chocolate, ice, or any circumstance of the trip.",
+  "verdict": "faithful",
+  "required": "faithful",
+  "divergences": []
+}
+```
+
+## known-answer — PASS
+```json
+{
+  "mismatches": [],
+  "total": 7,
+  "leanDeferred": true
+}
+```
+
+## adversarial — PASS
+```json
+{
+  "confirmed": [],
+  "proposed": 7
+}
+```

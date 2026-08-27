@@ -1,0 +1,104 @@
+{
+  "caseId": "2026-08-22-sample-role-r2",
+  "familyId": "2026-08-22-sample-role",
+  "revision": 2,
+  "supersedes": "2026-08-22-sample-role",
+  "supersededBy": null,
+  "status": "verdict-red",
+  "history": [
+    {
+      "status": "intake",
+      "at": "2026-08-22T16:10:23.456Z",
+      "by": "foundry"
+    },
+    {
+      "status": "drafted",
+      "at": "2026-08-22T16:10:23.733Z",
+      "by": "s1"
+    },
+    {
+      "status": "precedent-checked",
+      "at": "2026-08-22T16:10:23.993Z",
+      "by": "s2"
+    },
+    {
+      "status": "checks-passed",
+      "at": "2026-08-22T16:10:36.583Z",
+      "by": "s3"
+    },
+    {
+      "status": "signed-off",
+      "at": "2026-08-22T16:10:36.853Z",
+      "by": "Will Lilley",
+      "note": "[2026] VPS 11"
+    },
+    {
+      "status": "compiled",
+      "at": "2026-08-22T16:10:37.382Z",
+      "by": "s5",
+      "note": "lean deferred (ledger)"
+    },
+    {
+      "status": "proof-failed",
+      "at": "2026-08-22T16:10:37.383Z",
+      "by": "s6",
+      "note": "fails: TypeScript essential; Kubernetes required"
+    },
+    {
+      "status": "verdict-red",
+      "at": "2026-08-22T16:10:37.383Z",
+      "by": "s7"
+    },
+    {
+      "status": "proof-failed",
+      "at": "2026-08-22T16:10:37.384Z",
+      "by": "s6",
+      "note": "fails: 7+ years experience; Kubernetes required"
+    },
+    {
+      "status": "verdict-red",
+      "at": "2026-08-22T16:10:37.384Z",
+      "by": "s7"
+    },
+    {
+      "status": "proof-failed",
+      "at": "2026-08-23T07:43:40.003Z",
+      "by": "s6",
+      "note": "fails: TypeScript essential; Kubernetes required"
+    },
+    {
+      "status": "proof-failed",
+      "at": "2026-08-23T07:43:40.993Z",
+      "by": "s6",
+      "note": "fails: 7+ years experience; Kubernetes required"
+    },
+    {
+      "status": "compiled",
+      "at": "2026-08-23T07:45:45.041Z",
+      "by": "s5",
+      "note": "lean ok"
+    },
+    {
+      "status": "proof-failed",
+      "at": "2026-08-23T07:45:45.708Z",
+      "by": "s6",
+      "note": "fails: TypeScript essential; Kubernetes required"
+    },
+    {
+      "status": "verdict-red",
+      "at": "2026-08-23T07:45:45.709Z",
+      "by": "s7"
+    },
+    {
+      "status": "proof-failed",
+      "at": "2026-08-23T07:45:46.389Z",
+      "by": "s6",
+      "note": "fails: 7+ years experience; Kubernetes required"
+    },
+    {
+      "status": "verdict-red",
+      "at": "2026-08-23T07:45:46.390Z",
+      "by": "s7"
+    }
+  ]
+}
