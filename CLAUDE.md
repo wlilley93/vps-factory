@@ -46,4 +46,6 @@ Hard rules for any AI session working here:
 
 ## VJS
 (Upstream plugin/CLAUDE.md no longer exists at a fetchable path — see VPS-PLAN §11.1
-v2.1. The operative successors of its rules are 1–5e above and the kernel in lean/Vps/.)
+v2.1. The operative local guardrails are 1–5g above. Adjudication and the kernel
+relationship belong to the VJS court (record/0037); this factory's Lean package
+contains `Spec`, not a vendored `lean/Vps/` kernel.)
