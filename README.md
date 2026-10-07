@@ -66,22 +66,29 @@ data — never more than that.
 
 ## Trust
 
-The kernel narrows what must be trusted; it does not abolish it. What is
-proved mechanically — append-only history, authority chains, supersession,
-entrenchment, the gate — is proved by Lean. What remains trusted is the
-content of bench rulings and the human sign-off, as it must be.
+Lean checks the factory's specifications and proofs; it does not establish
+that the formalization is faithful or that the input data is true. Bench
+rulings and human sign-off remain trusted judgments. Adjudication and the
+constitutional kernel relationship belong to the VJS court, not this package
+(see `record/0037.md`).
 
 ## Layout
 
 - `src/` — the pipeline (intake, draft, checks, prove, verdict), CLI, and the local review UI
-- `lean/` — the Lean kernel (`Vps/`) and generated case specifications
+- `lean/` — the `Spec` library: shared core, generated case specifications, and generated theorems; no vendored constitutional kernel
 - `cases/` — every case that has ever run, with its full history
 - `record/` — append-only engineering history, one entry per change
 - `VPS-PLAN.md` — the governing build plan
 
 ## Status
 
-Working and self-testing. All build phases M0–M11 are green, the Lean kernel
-builds clean, and the test suite passes. This is a personal research tool, not
-a hosted product: the review UI is a single local page with exactly one write
-endpoint, bound to `127.0.0.1`, and there is no way to automate sign-off.
+The factory Lean package declares only `Spec` and pins Lean 4.15.0. Its
+default `lake build` checks `Spec.lean` and `Spec/Core.lean`, not every generated
+case or theorem. The former M11 jurisdiction was retired (`record/0037.md`);
+there is no `lean/Vps/` or local constitutional gate. See `UNVERIFIED-LEAN.md`
+for build evidence and the deferred historical gate evaluation; this cleanup
+did not re-run the application test suite.
+
+This is a personal research tool, not a hosted product: the review UI is a
+single local page with exactly one write endpoint, bound to `127.0.0.1`, and
+there is no way to automate sign-off.
